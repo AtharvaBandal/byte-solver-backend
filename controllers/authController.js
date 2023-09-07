@@ -113,7 +113,7 @@ export const login = async(req,res)=>{
 
         if(correctPassword){
            
-            createSendToken(user,201,res);
+            createSendToken(user,201,res,req);
         }
         else{
             console.log("please provide your correct email address and password");

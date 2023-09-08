@@ -9,7 +9,7 @@ const app = express();
 
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://byte-solvers.netlify.app/');
+    res.header('Access-Control-Allow-Origin', 'https://byte-solvers.netlify.app');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
@@ -20,7 +20,7 @@ app.use(express.json({limit: '10kb' }));
 app.use(cookieParser()); 
 app.use(express.urlencoded({extended:true,limit:'10kb'}));
 app.use(cors({
-    origin: ["http://localhost:3001","https://byte-solvers.netlify.app/"],
+    origin: ["http://localhost:3001","https://byte-solvers.netlify.app"],
     credentials: true,
     
 }));

@@ -4,7 +4,7 @@ import { submitAnswer, getAllAnswers, giveStatus, getAnswers_user, deleteAnswer,
 
 const router = express.Router(); 
 
-router.post('/submitAnswer', submitAnswer);
+router.post('/submitAnswer/:userId', submitAnswer);
 router.post('/giveStatus/:ansId', giveStatus);
 
 router.get('/getAllAnswers/:quesId', getAllAnswers);

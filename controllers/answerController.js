@@ -18,7 +18,8 @@ const checkRole = async(email)=>{
 export const submitAnswer = async(req,res,next) => {
 
     
-    const {user,post,text,language,postCreatedAt,timeLimit} = req.body;
+    const {post,text,language,postCreatedAt,timeLimit} = req.body;
+    const userId = req.params.userId
     if(!text&&!language){
         return res.status(400).json({
             status:'failed',
@@ -34,17 +35,23 @@ export const submitAnswer = async(req,res,next) => {
 
         });
     }
-    const answer = await Answer.create({user,post,text,language});
-    console.log(text);
+    const answer = await Answer.create({user:userId,post,text,language});
+   
 
     if(answer){
+       const user_updated =  await User.findByIdAndUpdate({user:userId},{answers:answer._id})   
+
         res.status(200).json({
             status:'success',
             data:{
+                user_updated,
                 answer
             }
 
         });
+    
+
+       
     }
     else{ 
         res.status(400).json({

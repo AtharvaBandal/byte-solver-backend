@@ -28,23 +28,27 @@ export const submitAnswer = async(req,res,next) => {
         });
     }
 
-    if(Date.now() > postCreatedAt+1000*60*timeLimit) {
-        res.status(400).json({
-            status:'failed',
-           message:'Time limit exceeded'
+    // if(Date.now() > postCreatedAt+1000*60*timeLimit) {
+    //     res.status(400).json({
+    //         status:'failed',
+    //        message:'Time limit exceeded'
 
-        });
-    }
+    //     });
+    // }
     const answer = await Answer.create({user:userId,post,text,language});
    
 
     if(answer){
-       const user_updated =  await User.findByIdAndUpdate({user:userId},{answers:answer._id})   
-
+        const user_updated = await User.findByIdAndUpdate(
+            { _id: userId }, 
+            { $push: { answers: answer._id } },
+            { new: true }
+          );
+       
         res.status(200).json({
             status:'success',
             data:{
-                user_updated,
+                user: user_updated,
                 answer
             }
 

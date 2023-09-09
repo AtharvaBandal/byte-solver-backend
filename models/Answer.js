@@ -15,8 +15,8 @@ const answerSchema = mongoose.Schema({
     },
     status:{
        type:String,
-       enum:['correct', 'incorrect','pending'],
-       default:'pending'
+       enum:['Approved', 'Rejected','Pending'],
+       default:'Pending'
     },
     answeredAt:{
         type:Date,

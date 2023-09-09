@@ -145,14 +145,7 @@ export const giveStatus=async(req,res,next) => {
     }
     
     
-    if(ans.status!='pending')
-    {
-        return res.status(400).json({
-            status:'failure',
-            message:'aproved answers are not allowed to give status',
-            
-        })
-    }
+   
 
     ans.status = req.body.status;
 

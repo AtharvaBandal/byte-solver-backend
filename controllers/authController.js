@@ -173,4 +173,20 @@ export const isLoggedIn = async (req,res)=>{
 };
     };       
     
-   
+    
+ export const findUser = async (req,res)=>{ 
+    const currentUser = User.findOne(req.params.userId)
+
+    if(!currentUser){
+         res.status(404).json({
+            status: "failure",
+            message: "User does not exist..."
+        })
+    }
+    return res.status(200).json({
+        status:'success',
+        data:{
+            currentUser
+        }
+    })
+  } 

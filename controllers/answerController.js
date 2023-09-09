@@ -1,5 +1,6 @@
 import Answer from '../models/Answer.js';
 import User from '../models/User.js';
+import Post from '../models/Post.js';
 
 const checkRole = async(email)=>{
    
@@ -42,6 +43,7 @@ export const submitAnswer = async(req,res,next) => {
         const user_updated = await User.findByIdAndUpdate(
             { _id: userId }, 
             { $push: { answers: answer._id } },
+            { $push: { post: post } },
             { new: true }
           );
        
